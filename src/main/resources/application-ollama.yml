@@ -1,0 +1,12 @@
+spring:
+  ai:
+    ollama:
+      base-url: http://localhost:11434
+      chat:
+        options:
+          model: llama3.2:3b
+          temperature: 0.2
+          top-p: 0.85
+          num-predict: 2048
+      embedding:
+        model: nomic-embed-text

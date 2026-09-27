@@ -1,0 +1,15 @@
+services:
+  pgvector:
+    image: pgvector/pgvector:pg17
+    container_name: clinical-copilot-pgvector
+    environment:
+      POSTGRES_DB: clinical_copilot_prod
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5434:5432"
+    volumes:
+      - pgvector-aws-data:/var/lib/postgresql/data
+
+volumes:
+  pgvector-aws-data:

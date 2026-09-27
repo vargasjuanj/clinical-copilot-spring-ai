@@ -1,0 +1,36 @@
+spring:
+  autoconfigure:
+    exclude:
+      - org.springframework.ai.vectorstore.chroma.autoconfigure.ChromaVectorStoreAutoConfiguration
+  application:
+    name: clinical-copilot-service
+  datasource:
+    url: jdbc:postgresql://localhost:5432/clinical_copilot
+    username: postgres
+    password: postgres
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8090/realms/clinical-copilot
+  ai:
+    chat:
+      memory:
+        repository:
+          jdbc:
+            initialize-schema: always
+    vectorstore:
+      chroma:
+        url: http://localhost:8000
+    mcp:
+      client:
+        enabled: false
+        stdio:
+          connections: {}
+      server:
+        name: clinical-copilot-mcp
+        version: 1.0.0
+        protocol: STATELESS
